@@ -19,68 +19,64 @@ socketio = SocketIO(app)
 # speech_results = queue.Queue()
 # on_speech = False
 
-
-def listen_loop(responses):
-    print("begin loop")
-    for response in responses:
-        if not response.results:
-            continue
-        result = response.results[0]
-        if not result.alternatives:
-            continue
-        alternative = result.alternatives[0]
-        transcript = alternative.transcript
-        if not result.is_final:
-            print(transcript)
-
-            socketio.emit('server_response', {'data': transcript})
-            # speech_results.put(transcript)
-
-        else:
-            print(transcript)
-            socketio.emit('server_response', {'data': transcript})
-            # speech_results.put(transcript)
-            if re.search(r'\b(exit|quit)\b', transcript, re.I):
-                print('Exiting..')
-                break
-
 @app.route("/")
 def index():
     return render_template('index.html')
 
-
 @socketio.on('connect_event')
 def on_connect(msg):
-    emit('server_response', {'data': msg['data']})
+    data = msg['data']
+    if data == 'connected':
+        emit('server_response', {'data': data})
+    elif data == 'start':
+        emit('server_response', {'data': data})
+        RATE = 16000
+        CHUNK = int(RATE / 10)  # 100ms
+        language_code = 'ja-JP'  # a BCP-47 language tag
+
+        client = speech.SpeechClient()
+        config = types.RecognitionConfig(
+            encoding=enums.RecognitionConfig.AudioEncoding.LINEAR16,
+            sample_rate_hertz=RATE,
+            language_code=language_code,
+            enable_word_time_offsets=True)
+        streaming_config = types.StreamingRecognitionConfig(
+            config=config,
+            interim_results=True)
+
+        with MicrophoneStream(RATE, CHUNK) as stream:
+            audio_generator = stream.generator()
+            requests = (types.StreamingRecognizeRequest(audio_content=content)
+                        for content in audio_generator)
+            responses = client.streaming_recognize(streaming_config, requests)
+
+            print("begin loop")
+            for response in responses:
+                if not response.results:
+                    continue
+                result = response.results[0]
+                if not result.alternatives:
+                    continue
+                alternative = result.alternatives[0]
+                transcript = alternative.transcript
+                if not result.is_final:
+                    print(transcript)   
+                    # speech_results.put(transcript)
+
+                else:
+                    print(transcript)
+                    # speech_results.put(transcript)
+                    if re.search(r'\b(exit|quit)\b', transcript, re.I):
+                        print('Exiting..')
+                        break
+                emit('server_response', {'data': transcript})
+
 
 # @socketio.on('server_response')
 # def speech_result(msg):
 #     pass
 
-
-@socketio.on('speech_start')
-def speech_recognition():
-    RATE = 16000
-    CHUNK = int(RATE / 10)  # 100ms
-    language_code = 'ja-JP'  # a BCP-47 language tag
-
-    client = speech.SpeechClient()
-    config = types.RecognitionConfig(
-        encoding=enums.RecognitionConfig.AudioEncoding.LINEAR16,
-        sample_rate_hertz=RATE,
-        language_code=language_code,
-        enable_word_time_offsets=True)
-    streaming_config = types.StreamingRecognitionConfig(
-        config=config,
-        interim_results=True)
-
-    with MicrophoneStream(RATE, CHUNK) as stream:
-        audio_generator = stream.generator()
-        requests = (types.StreamingRecognizeRequest(audio_content=content)
-                    for content in audio_generator)
-
-        responses = client.streaming_recognize(streaming_config, requests)        
-        listen_loop(responses)      
+   
 
     #     # Return the time offsets
     #     # word_timestamp = []
