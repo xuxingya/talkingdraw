@@ -27,10 +27,8 @@ def index():
 def on_connect(msg):
     data = msg['data']
     if data == 'connected':
-        # emit('server_response', {'data': data})
-        print('connect')
+        emit('server_response', {'data': data})
     elif data == 'start':
-        print(data)
         emit('server_response', {'data': data})
         RATE = 16000
         CHUNK = int(RATE / 10)  # 100ms

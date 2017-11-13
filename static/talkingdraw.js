@@ -10,13 +10,17 @@
       var socket = io.connect('http://' + document.domain + ':' + window.location.port);
       socket.on('connect', function(){
         socket.emit('connect_event', {data: 'connected'});
-        $('#start_speech').click(function(){
+      });
+      
+      $('#start_speech').click(function(){
         socket.emit('connect_event',{data: 'start'});
+      });     
+
+      socket.on('server_response', function(msg){
+        console.log(msg.data);
+        // $('#interim_span').html(msg.data);        
       });
-        socket.on('server_response', function(data){
-          console.log(data.data)
-        });
-      });
+
 };
 
     function Pen(new_context) {
