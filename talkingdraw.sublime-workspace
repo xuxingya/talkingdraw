@@ -1,0 +1,561 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"start",
+				"start_speech"
+			],
+			[
+				"_",
+				"_y"
+			],
+			[
+				"lent",
+				"length"
+			],
+			[
+				"co",
+				"console"
+			],
+			[
+				"offs",
+				"offset"
+			],
+			[
+				"mou",
+				"mouseup"
+			],
+			[
+				"mouse",
+				"mousemove"
+			],
+			[
+				"ev",
+				"ev_canvas"
+			],
+			[
+				"get",
+				"getContext"
+			],
+			[
+				"func",
+				"function"
+			],
+			[
+				"offse",
+				"offsetX"
+			],
+			[
+				"clear",
+				"clearRect"
+			],
+			[
+				"mem",
+				"memCtx"
+			],
+			[
+				"draw",
+				"drawImage"
+			],
+			[
+				"inner",
+				"innerHeight"
+			],
+			[
+				"ii",
+				"innerHeight"
+			],
+			[
+				"border",
+				"border-style"
+			],
+			[
+				"padding-",
+				"padding-top"
+			],
+			[
+				"pad",
+				"padding-left"
+			],
+			[
+				"background-c",
+				"background-color"
+			],
+			[
+				"ali",
+				"align-items"
+			],
+			[
+				"padd",
+				"padding-right"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"w",
+				"word-wrap"
+			],
+			[
+				"mar",
+				"margin-left"
+			],
+			[
+				"im",
+				"images"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"al",
+				"align-items"
+			],
+			[
+				"max",
+				"max-height"
+			],
+			[
+				"__",
+				"__name__\tinstance"
+			],
+			[
+				"word",
+				"word_timestamp\tstatement"
+			],
+			[
+				"end",
+				"end_time"
+			],
+			[
+				"fun",
+				"function"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "static/style.css",
+			"settings":
+			{
+				"buffer_size": 3287,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "templates/index.html",
+			"settings":
+			{
+				"buffer_size": 2597,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "static/talkingdraw.js",
+			"settings":
+			{
+				"buffer_size": 3438,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "server.py",
+			"settings":
+			{
+				"buffer_size": 405,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "transcribe.py",
+			"settings":
+			{
+				"buffer_size": 6238,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 296.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Install Package Control"
+			]
+		],
+		"width": 642.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/hmp/Documents/GitHub/talkingdraw",
+		"/C/Users/hmp/Documents/GitHub/talkingdraw/static"
+	],
+	"file_history":
+	[
+		"/C/Users/hmp/AppData/Roaming/Sublime Text 3/Packages/User/anaconda.sublime-build",
+		"/C/Users/hmp/AppData/Roaming/Sublime Text 3/Packages/User/Plain text.sublime-settings",
+		"/C/Users/hmp/AppData/Roaming/Sublime Text 3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/C/Users/hmp/AppData/Roaming/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/C/TalkingDraw/server.py",
+		"/C/TalkingDraw/transcribe.py",
+		"/C/Users/hmp/Documents/GitHub/talkingdraw/static/talkingdraw.js",
+		"/C/Users/hmp/Documents/GitHub/talkingdraw/static/transcribe.js",
+		"/C/TalkingDraw/statics/TalkingDraw.js",
+		"/C/Users/hmp/Documents/GitHub/talkingdraw/static/style.css",
+		"/C/Users/hmp/Documents/GitHub/talkingdraw/static/kuromoji.js",
+		"/C/Users/hmp/Documents/GitHub/talkingdraw/url.py",
+		"/C/TalkingDraw/search.py",
+		"/C/TalkingDraw_nodejs/views/index.html",
+		"/C/TalkingDraw_nodejs/routes/users.js",
+		"/C/TalkingDraw_nodejs/public/javascripts/TalkingDraw.js",
+		"/C/TalkingDraw_nodejs/bin/www",
+		"/C/TalkingDraw_nodejs/startapp.bat",
+		"/C/TalkingDraw_nodejs/views/index.pug",
+		"/C/TalkingDraw/handlers/index.py",
+		"/C/TalkingDraw/url.py",
+		"/C/TalkingDraw/statics/style.css",
+		"/C/Users/hmp/Google ドライブ/Web drawing board/vdraw.html",
+		"/C/TalkingDraw/templates/index.html",
+		"/C/Users/hmp/Google ドライブ/voiceDraw/views/vdraw.html",
+		"/C/TalkingDraw/__init__.py",
+		"/C/Users/hmp/AppData/Roaming/Sublime Text 3/Packages/SideBarEnhancements/Side Bar.sublime-settings",
+		"/C/Users/hmp/Google ドライブ/voiceDraw/public/javascripts/voiceDraw.js",
+		"/C/Users/hmp/Google ドライブ/Web drawing board/index.js",
+		"/C/TalkingDraw/hello",
+		"/C/Users/hmp/AppData/Roaming/Sublime Text 3/Packages/User/AutoPep8.sublime-settings",
+		"/C/Users/hmp/AppData/Roaming/Sublime Text 3/Packages/AutoPEP8/AutoPep8.sublime-settings"
+	],
+	"find":
+	{
+		"height": 42.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"start_speech",
+			"ev_canvas",
+			"main-app-content",
+			"poin"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "static/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3287,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1852,
+								1852
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 5220.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "templates/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2597,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1605,
+								1593
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 480.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "static/talkingdraw.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3438,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								263,
+								263
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "server.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 405,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								262,
+								262
+							]
+						],
+						"settings":
+						{
+							"autopep8_view_autosave": true,
+							"show_definitions": false,
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "transcribe.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6238,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5439,
+								5439
+							]
+						],
+						"settings":
+						{
+							"autopep8_view_autosave": true,
+							"open_with_edit": true,
+							"show_definitions": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4573.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 42.0
+	},
+	"input":
+	{
+		"height": 60.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.autopep8":
+	{
+		"height": 198.0
+	},
+	"output.exec":
+	{
+		"height": 198.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/anaconda.sublime-build",
+	"project": "talkingdraw.sublime-project",
+	"replace":
+	{
+		"height": 78.0
+	},
+	"save_all_on_build": false,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 588.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 588.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 300.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

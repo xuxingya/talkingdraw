@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= "style.css")}}">
+		<link href="https://fonts.googleapis.com/css?family=Anton|Archivo+Black|Bevan|Corben:700|Covered+By+Your+Grace|Crimson+Text|Didact+Gothic|Graduate|Karla|Pacifico|Roboto+Mono|Rubik+Mono+One|Stint+Ultra+Expanded|UnifrakturCook:700|Yellowtail" rel="stylesheet">
+		<link rel="icon" type="image/png" href="/static/images/icons/favicon.png">
+	    <link rel="apple-touch-icon-precomposed" href="/static/images/icons/favicon.png">
+	    <title>TalkingDraw</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/socket.io/2.0.3/socket.io.slim.js"></script>
+		<script type="text/javascript" src="{{url_for('static', filename="kuromoji.js")}}"></script>
+		<script type="text/javascript" src="{{url_for('static', filename="talkingdraw.js")}}"></script>
+		<div id="root" class="touch">
+			<div id="modal" class></div>
+			<div id="main-app-content" class>
+				<div id="settings-bar">
+					<h1>TalkingDraw</h1>
+					<div id="talkingdraw-panel" class="settings-bar">
+						<div id="talkingdraw-suggestions">
+							<p>Do you mean:</p>
+							<div class="thumbs">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="main-menu" class></div>
+				<div id="results">
+					<span id="interim_span"></span>
+					<span id="final_span"></span>
+				</div>
+				<div id= "toolbar">					
+					<div class="tool delete">
+						<img src="/static/images/icons/ic_delete_black_24px.svg">
+						<label>Delete</label>
+					</div>
+					<div class="tool undo">
+						<img src="/static/images/icons/ic_undo_black_24px.svg">
+						<label>Undo</label>
+					</div>
+					<div class="tool redo">
+						<img src="/static/images/icons/ic_redo_black_24px.svg">
+						<label>Redo</label>
+					</div>
+					<div class="tool clear" onclick = 'PEN.clear()'>
+						<img src="/static/images/icons/ic_clear_black_24px.svg"/>
+						<label>Clear</label>
+					</div>
+				</div>
+				<div id="speechContainer">
+					<div id="start_speech" class="tool start_speech">
+						<img src="/static/images/icons/ic_mic_none_black_24px.svg"/>
+						<label>Talk</label>
+					</div>
+				</div>
+				<div id="main-canvas-container">
+					<canvas id="canvas"></canvas>
+				</div>				
+			</div>
+		</div>
+			
+	</body>
+</html>
