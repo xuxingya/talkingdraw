@@ -3,10 +3,11 @@ from __future__ import division
 from flask import Flask, jsonify, render_template, request, Response, stream_with_context
 from transcribe import MicrophoneStream
 from flask_socketio import SocketIO, emit
+import eventlet
+eventlet.monkey_patch()
 
 import re
 import sys
-import eventlet
 
 from google.cloud import speech
 from google.cloud.speech import enums
@@ -19,6 +20,33 @@ app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 # speech_results = queue.Queue()
 # on_speech = False
+
+
+def listen_loop(responses):
+    print("begin loop")
+    for response in responses:
+        if not response.results:
+            continue
+        result = response.results[0]
+        if not result.alternatives:
+            continue
+        alternative = result.alternatives[0]
+        transcript = alternative.transcript
+        print("enter loop")
+        if not result.is_final:
+            print(transcript)
+            socketio.emit('server_response', {'data': transcript})
+            eventlet.sleep(1)
+            # speech_results.put(transcript)
+
+        else:
+            print(transcript)
+            socketio.emit('server_response', {'data': transcript})
+            eventlet.sleep(1)
+            # speech_results.put(transcript)
+            if re.search(r'\b(exit|quit)\b', transcript, re.I):
+                print('Exiting..')
+                break
 
 def speech_recognition():
     RATE = 16000
@@ -39,50 +67,26 @@ def speech_recognition():
         audio_generator = stream.generator()
         requests = (types.StreamingRecognizeRequest(audio_content=content)
                     for content in audio_generator)
-        responses = client.streaming_recognize(streaming_config, requests)
 
-        print("begin loop")
-        for response in responses:
-            if not response.results:
-                continue
-            result = response.results[0]
-            if not result.alternatives:
-                continue
-            alternative = result.alternatives[0]
-            transcript = alternative.transcript
-            if not result.is_final:
-                print(transcript)   
-                # speech_results.put(transcript)
-
-            else:
-                print(transcript)
-                # speech_results.put(transcript)
-                if re.search(r'\b(exit|quit)\b', transcript, re.I):
-                    print('Exiting..')
-                    break
-            socketio.emit('server_response', {'data': transcript})
-            eventlet.sleep(0.2)
-
+        responses = client.streaming_recognize(streaming_config, requests)        
+        listen_loop(responses)
 
 @app.route("/")
 def index():
     return render_template('index.html')
 
+
 @socketio.on('connect_event')
 def on_connect(msg):
-    data = msg['data']
-    if data == 'connected':
-        emit('server_response', {'data': data})
-    elif data == 'start':
+    emit('server_response', {'data': msg['data']})
+    if(msg['data'] == 'start'):
+        print('start speech recognition')
         eventlet.spawn(speech_recognition)
-        
 
-
-# @socketio.on('server_response')
-# def speech_result(msg):
-#     pass
-
-   
+# @socketio.on('speech_start')
+# def on_start(msg):
+#     emit('server_resonse', {'data': msg['data']})
+     
 
     #     # Return the time offsets
     #     # word_timestamp = []

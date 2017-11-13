@@ -17,8 +17,7 @@
       });
       
       socket.on('server_response', function(msg){
-        console.log(msg.data);
-        // $('#interim_span').html(msg.data);        
+        $('#interim_span').html(msg.data);        
       });
 
 };

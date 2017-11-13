@@ -169,10 +169,9 @@ def transcribe_run():
                     for content in audio_generator)
 
         responses = client.streaming_recognize(streaming_config, requests)
-        return responses
         
         # Now, put the transcription responses to use.
-        # listen_print_loop(responses)
+        listen_print_loop(responses)
 
 
 if __name__ == '__main__':
