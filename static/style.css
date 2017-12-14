@@ -5,6 +5,9 @@ html {
 	height:100%;
 	overflow: hidden;
 	color: #666;
+	-webkit-user-select: none;
+	user-select: none;
+	touch-action: manipulation;
 }
 
 body {
@@ -107,7 +110,7 @@ body > div {
 	box-shadow: .1rem .1rem 0 rgba(0,0,0,0.25);
 	text-align: left;
 	padding-left: 3rem;
-	padding-top: 0.2rem;
+	padding-top: 0.4rem;
 	z-index:99;
 	font-size: 2rem;
 	background-color: white;
@@ -155,7 +158,7 @@ body > div {
     top: 100%;
     left:0%;
     transform: translateY(50%);
-    margin-top: : 1.2rem;
+    margin: : auto;
     font-size: 1.4rem;
     padding: .4rem .8rem;
     border-radius: .4rem;
@@ -165,17 +168,26 @@ body > div {
 	display: inline-block;
 	position: fixed;
 	width: auto;
-	height: 4.5rem;
+	height: auto;
 	bottom: 4.5rem;
 	left:50%;
 	z-index: 99;
 }
 
-#interim-span {
+#start_speech {
+	width: 6rem;
+	height: 6rem;
+}
+
+#start_speech label{
+	left:.8rem;
+}
+
+#interim_span {
 	color: gray;
 }
 
-#final-span {
+#final_span {
 	color: black;
 }
 
@@ -197,6 +209,7 @@ body > div {
     top: 0;
     left: 0;
     cursor: crosshair;
+    touch-action: none;
 }
 
 * {

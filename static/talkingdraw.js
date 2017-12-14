@@ -1,23 +1,39 @@
+    var starttime;
+    var ontalk = false;
     var talkingdraw_init=function(){
 
       var canvas = document.getElementById('canvas');
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       PEN = new Pen(canvas.getContext('2d'));
-      canvas.addEventListener('mousedown', ev_canvas, false);
-      canvas.addEventListener('mousemove', ev_canvas, false);
-      canvas.addEventListener('mouseup', ev_canvas, false);
+      canvas.addEventListener('pointerdown', ev_canvas, false);
+      canvas.addEventListener('pointermove', ev_canvas, false);
+      canvas.addEventListener('pointerup', ev_canvas, false);
       var socket = io.connect('http://' + document.domain + ':' + window.location.port);
       socket.on('connect', function(){
         socket.emit('connect_event', {data: 'connected'});
         $('#start_speech').click(function(){
-        console.log('click start');
-        socket.emit('connect_event', {data: 'start'});
+        ontalk = true;
+        $('#start_speech').css('background-color', 'yellowgreen');
+        starttime = new Date();
+        console.log('click start' + starttime);
+        socket.emit('speech_event', {data: 'start'});
       }); 
       });
       
-      socket.on('server_response', function(msg){
-        $('#interim_span').html(msg.data);        
+      socket.on('interim_response', function(msg){
+        $('#final_span').html('');
+        $('#interim_span').html(msg.data);  
+      });
+
+      socket.on('final_response', function(msg){
+        $('#interim_span').html(''); 
+        $('#final_span').html(msg.data);    
+      });
+
+      socket.on('speech_state', function(msg){
+        console.log(msg.data);
+        $('#start_speech').css('background-color', 'rgba(242,242,242,0.98)');
       });
 
 };
@@ -40,16 +56,21 @@
       memCanvas.height = h;
       var memCtx = memCanvas.getContext('2d');
       this.points = [];
+      this.time = [];
 
-      this.mousedown = function(ev){
+      this.pointerdown = function(ev){
         tool.points.push({
           x: ev._x,
           y: ev._y
         });
         tool.started = true;
+        tool.time = [];
+        console.log(new Date());
+        a = (new Date() - starttime)*0.001;
+        tool.time.push(a);
       };
 
-      this.mousemove = function(ev) {
+      this.pointermove = function(ev) {
         if (tool.started) {
           context.clearRect(0, 0, w, h);
           context.drawImage(memCanvas, 0, 0);
@@ -61,12 +82,20 @@
         }
       };
 
-      this.mouseup = function(ev) {
+      this.pointerup = function(ev) {
         if(tool.started) {
           tool.started = false;
           memCtx.clearRect(0,0,w,h);
           memCtx.drawImage(canvas, 0, 0);
           tool.points = [];
+          console.log(new Date());
+          b = (new Date() - starttime)*0.001;
+          tool.time.push(b);
+          if(ontalk){
+          $.post("/command", {'starttime': tool.time[0], 'endtime': tool.time[1]}, function(data) {
+            console.log(data);
+          });
+        }
         }
       };
 

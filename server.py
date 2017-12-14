@@ -7,6 +7,7 @@ from flask_socketio import SocketIO, emit
 import re
 import sys
 import eventlet
+import datetime
 
 from google.cloud import speech
 from google.cloud.speech import enums
@@ -17,13 +18,13 @@ from six.moves import queue
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
-# speech_results = queue.Queue()
-# on_speech = False
+gestures = []
+
 
 def speech_recognition():
     RATE = 16000
     CHUNK = int(RATE / 10)  # 100ms
-    language_code = 'ja-JP'  # a BCP-47 language tag
+    language_code = 'en'  # a BCP-47 language tag
 
     client = speech.SpeechClient()
     config = types.RecognitionConfig(
@@ -40,29 +41,74 @@ def speech_recognition():
         requests = (types.StreamingRecognizeRequest(audio_content=content)
                     for content in audio_generator)
         responses = client.streaming_recognize(streaming_config, requests)
+        # try:
+        listen_loop(responses)
+        # except:
+        #     print("Unexpected error:", sys.exc_info()[0], flush = True)
+        #     socketio.emit('speech_state', {'data': 'speech recognition error'})     
 
-        print("begin loop")
-        for response in responses:
-            if not response.results:
-                continue
-            result = response.results[0]
-            if not result.alternatives:
-                continue
-            alternative = result.alternatives[0]
-            transcript = alternative.transcript
-            if not result.is_final:
-                print(transcript)   
-                # speech_results.put(transcript)
+def run_once(f):
+    def wrapper(*args, **kwargs):
+        if not wrapper.has_run:
+            wrapper.has_run = True
+            return f(*args, **kwargs)
+    wrapper.has_run = False
+    return wrapper
 
-            else:
-                print(transcript)
-                # speech_results.put(transcript)
-                if re.search(r'\b(exit|quit)\b', transcript, re.I):
-                    print('Exiting..')
-                    break
-            socketio.emit('server_response', {'data': transcript})
-            eventlet.sleep(0.2)
+@ run_once
+def check_time():
+    return datetime.datetime.now()
 
+def gesture_search(gesture, word_timestamp, speaktime):
+    # subtime = (speaktime - startbutton_time).total_seconds()
+    # print("subtime is"+str(subtime), flush = True)
+    # gesture_trim = (gesture[0]-subtime, gesture[1]-subtime)
+    return gesture
+
+def gestures_search(word_timestamp, speaktime):
+    print("gestures is "+ str(gestures), flush=True)
+    if not word_timestamp or not speaktime or not gestures:
+        return None
+    keywords = []
+    for gesture in gestures:
+        # the algrithm to search icon keyword in sentence
+        keywords.append(gesture_search(gesture, word_timestamp, speaktime))
+    return keywords
+
+def listen_loop(responses):
+    hasrun = False 
+    for response in responses:
+        if not response.results:
+            continue
+        result = response.results[0]
+        if not result.alternatives:
+            continue
+        alternative = result.alternatives[0]
+        transcript = alternative.transcript
+        if not hasrun:
+            speaktime = datetime.datetime.now()
+            hasrun = True
+            print("startbutton_time "+str(startbutton_time), flush=True) 
+            print("first speak time "+ str(speaktime), flush=True)
+        if not result.is_final:
+            socketio.emit('interim_response', {'data': transcript})      
+        else:
+            socketio.emit('final_response', {'data': transcript})
+            word_timestamp = []
+            for word_info in alternative.words:
+                word = word_info.word
+                start_time = word_info.start_time.seconds + word_info.start_time.nanos * 1e-9
+                end_time = word_info.end_time.seconds + word_info.end_time.nanos * 1e-9
+                word_timestamp.append([word, start_time, end_time])
+            keyword_results = gestures_search(word_timestamp, speaktime)
+            # if keyword_results:
+            #     print(keyword_results, flush = True)
+            for unitword in word_timestamp:
+                print(unitword, flush=True)
+            if re.search(r'\b(exit|quit)\b', transcript, re.I):
+                print('Exiting..')
+                break
+        eventlet.sleep(0.2)  
 
 @app.route("/")
 def index():
@@ -72,36 +118,25 @@ def index():
 def on_connect(msg):
     data = msg['data']
     if data == 'connected':
-        emit('server_response', {'data': data})
-    elif data == 'start':
-        eventlet.spawn(speech_recognition)
+        emit('interim_response', {'data': data})
+
+@socketio.on('speech_event')
+def on_speech(msg):
+    global startbutton_time
+    startbutton_time = datetime.datetime.now()
+    eventlet.spawn(speech_recognition)
+
         
 
 
-# @socketio.on('server_response')
-# def speech_result(msg):
-#     pass
+@app.route('/command', methods=["GET", "POST"])
+def on_pen():
+    global gestures
+    starttime = float(request.form['starttime'])
+    endtime = float(request.form['endtime'])
+    gestures.append((starttime, endtime))
+    return "pentime received"
 
-   
-
-    #     # Return the time offsets
-    #     # word_timestamp = []
-    #     # for word_info in alternative.words:
-    #     #     word = word_info.word
-    #     #     start_time = word_info.start_time.seconds + word_info.start_time.nanos * 1e-9
-    #     #     end_time = word_info.end_time.seconds + word_info.end_time.nanos * 1e-9
-    #     #     word_timestamp.append((word, start_time, end_time))
-
-    # def on_result():
-    #     while on_speech:
-    #         while True:
-    #             try:
-    #                 speech = speech_results.get(block=False)
-    #                 if speech is None:
-    #                     return
-    #                 socketio.emit('speech_result', {data: speech})
-    #             except queue.Empty:
-    #                 break
 
 
 def main():
