@@ -2,38 +2,53 @@
     var ontalk = false;
     var talkingdraw_init=function(){
 
-      var canvas = document.getElementById('canvas');
+      var canvas = document.getElementById("canvas");
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      PEN = new Pen(canvas.getContext('2d'));
-      canvas.addEventListener('pointerdown', ev_canvas, false);
-      canvas.addEventListener('pointermove', ev_canvas, false);
-      canvas.addEventListener('pointerup', ev_canvas, false);
-      var socket = io.connect('http://' + document.domain + ':' + window.location.port);
-      socket.on('connect', function(){
-        socket.emit('connect_event', {data: 'connected'});
-        $('#start_speech').click(function(){
+      PEN = new Pen(canvas.getContext("2d"));
+      canvas.addEventListener("pointerdown", ev_canvas, false);
+      canvas.addEventListener("pointermove", ev_canvas, false);
+      canvas.addEventListener("pointerup", ev_canvas, false);
+      var socket = io.connect("http://" + document.domain + ":" + window.location.port);
+      socket.on("connect", function(){
+        socket.emit("connect_event", {data: "connected"});
+        $("#start_speech").click(function(){
         ontalk = true;
-        $('#start_speech').css('background-color', 'yellowgreen');
+        $("#start_speech").css("background-color", "yellowgreen");
         starttime = new Date();
-        console.log('click start' + starttime);
-        socket.emit('speech_event', {data: 'start'});
+        console.log("click start" + starttime);
+        socket.emit("speech_event", {data: "start"});
       }); 
       });
       
-      socket.on('interim_response', function(msg){
-        $('#final_span').html('');
-        $('#interim_span').html(msg.data);  
+      socket.on("interim_response", function(msg){
+        $("#final_span").html("");
+        $("#interim_span").html(msg.data);  
       });
 
-      socket.on('final_response', function(msg){
-        $('#interim_span').html(''); 
-        $('#final_span').html(msg.data);    
+      socket.on("final_response", function(msg){
+        $("#interim_span").html(""); 
+        $("#final_span").html(msg.data);    
       });
 
-      socket.on('speech_state', function(msg){
+      socket.on("speech_state", function(msg){
         console.log(msg.data);
-        $('#start_speech').css('background-color', 'rgba(242,242,242,0.98)');
+        ontalk=false;
+        $("#start_speech").css("background-color", "rgba(242,242,242,0.98)");
+      });
+
+      socket.on("suggestion", function(msg){
+        keys = msg.keys;
+        ranks =  msg.ranks;
+        $("#iconset_name").text(keys);
+        $(".thumbs").empty();
+        // currently only support one gesture one time
+        rank = ranks[0];
+        for(i=0;i<rank.length;++i){
+          image_src = "../static/iconset/"+rank[i];
+          console.log(image_src);
+          $(".thumbs").append("<div><img src="+image_src+"/>");
+        };
       });
 
 };
@@ -46,15 +61,15 @@
       var w = window.innerWidth;
       var h = window.innerHeight;
       context.lineWidth = 3;
-      context.lineJoin = 'round';
-      context.lineCap = 'round';
+      context.lineJoin = "round";
+      context.lineCap = "round";
       var lastx = 0;
       var lasty = 0;
       // create an in-memory canvas
-      var memCanvas = document.createElement('canvas');
+      var memCanvas = document.createElement("canvas");
       memCanvas.width = w;
       memCanvas.height = h;
-      var memCtx = memCanvas.getContext('2d');
+      var memCtx = memCanvas.getContext("2d");
       this.points = [];
       this.time = [];
 
@@ -64,10 +79,11 @@
           y: ev._y
         });
         tool.started = true;
-        tool.time = [];
-        console.log(new Date());
-        a = (new Date() - starttime)*0.001;
-        tool.time.push(a);
+        if (ontalk){
+          tool.time = [];
+          a = (new Date() - starttime)*0.001;
+          tool.time.push(a);
+        }
       };
 
       this.pointermove = function(ev) {
@@ -88,14 +104,13 @@
           memCtx.clearRect(0,0,w,h);
           memCtx.drawImage(canvas, 0, 0);
           tool.points = [];
-          console.log(new Date());
-          b = (new Date() - starttime)*0.001;
-          tool.time.push(b);
           if(ontalk){
-          $.post("/command", {'starttime': tool.time[0], 'endtime': tool.time[1]}, function(data) {
+            b = (new Date() - starttime)*0.001;
+            tool.time.push(b);          
+            $.post("/command", {"starttime": tool.time[0], "endtime": tool.time[1]}, function(data) {
             console.log(data);
-          });
-        }
+            });          
+          }
         }
       };
 
@@ -119,8 +134,8 @@
         ev._x = ev.offsetX;
         ev._y = ev.offsetY;
       }
-      ev._x = ev._x + $('#canvas').offset().left / 2;
-      ev._y = ev._y + $('#canvas').offset().top / 2;
+      ev._x = ev._x + $("#canvas").offset().left / 2;
+      ev._y = ev._y + $("#canvas").offset().top / 2;
       //call handler
       var func = PEN[ev.type];
       if(func) {
@@ -151,7 +166,7 @@
       img.onload = function(){
         ctx.drawImage(img,0,0,100,100);
       }
-      console.log('insert_image');
+      console.log("insert_image");
       img.src = "../static/images/painting.svg";
     }
 

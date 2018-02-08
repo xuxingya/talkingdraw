@@ -23,12 +23,14 @@
 					<h1>TalkingDraw</h1>
 					<div id="talkingdraw-panel" class="settings-bar">
 						<div id="talkingdraw-suggestions">
-							<p>Do you mean:</p>
-							<div class="thumbs">
-							</div>
+							<p>Suggestion:</p>
+								<div class="suggestions">
+									<p id="iconset_name"></p>
+									<div class="thumbs"></div>
+								</div>
 						</div>
 					</div>
-				</div>
+				</div>	
 				<div id="main-menu" class></div>
 				<div id="results">
 					<span id="interim_span"></span>
@@ -50,6 +52,14 @@
 					<div class="tool clear" onclick = 'PEN.clear()'>
 						<img src="/static/images/icons/ic_clear_black_24px.svg"/>
 						<label>Clear</label>
+					</div>
+					<div class="tool pencile">
+						<img src="/static/images/icons/pencil.svg"/>
+						<label>Pen</label>
+					</div>
+					<div class="tool talkingdraw">
+						<img src="/static/images/icons/talkingdraw.svg"/>
+						<label>Gesture</label>
 					</div>
 				</div>
 				<div id="speechContainer">
