@@ -7,4 +7,6 @@ It has two mode, free mode for drawing freely and command mode for inserting obj
 
 It can suggests suitable icons, images from a database according to your speech content and your drawing. For example, if you are explaining a cloud service and draw a cicle gesture on the board, It may suggests icons like "computer" "cloud" "database" and so on. Every icon will have many candidates, like "computer" will contain "desktop computer", "laptop", "computer type A" and so on.
 
-It uses speech recognition, handwriting recognition and sequence-to-sequence leanrning.
+It uses speech recognition, handwriting recognition and seq2seq learning.
+
+It's still in develping
