@@ -1,4 +1,4 @@
-# Read me 
+# TalkingDraw (in developping)
 We draw diagrams to help express our intensions when in discussions, brainstormings or lectures, which makes it easier to understand. But it's difficult to draw a nice, clear diagram like what we make in Keynote or PowerPoint.
 
 TalkingDraw is a whiteboard system to support drawing diagrams (system configuration diagram) at real-time in talking.
