@@ -1,5 +1,6 @@
     var starttime;
     var ontalk = false;
+    var istalkingdraw = false;
     var talkingdraw_init=function(){
 
       var canvas = document.getElementById("canvas");
@@ -42,11 +43,11 @@
         ranks =  msg.ranks;
         $("#iconset_name").text(keys);
         $(".thumbs").empty();
+        console.log(ranks)
         // currently only support one gesture one time
         rank = ranks[0];
         for(i=0;i<rank.length;++i){
           image_src = "../static/iconset/"+rank[i];
-          console.log(image_src);
           $(".thumbs").append("<div><img src="+image_src+"/>");
         };
       });

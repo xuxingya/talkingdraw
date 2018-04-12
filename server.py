@@ -107,7 +107,10 @@ def listen_loop(responses):
             # logging.info('gesture_timestamp: %s', currentgestures)
             ksearch = Search_Engine(word_timestamp, currentgestures, language,iconIndex)
             k_results = ksearch.get_icons()
-            print(k_results, flush = True)
+            keys = k_results[0]
+            ranks = k_results[1]
+            socketio.emit('suggestion', {'keys':keys,'ranks': ranks})
+            eventlet.sleep(0.1)
             # if keyword_results:
             #     print(keyword_results, flush = True)
             # for unitword in word_timestamp:
@@ -141,11 +144,11 @@ def on_speech(msg):
     # logging.info('speech start: %s', str(startbutton_time))
     global gestures
     gestures = []
-    result = test()
-    keys = result[0]
-    ranks = result[1]
-    emit('suggestion', {'keys':keys,'ranks': ranks})
-    # eventlet.spawn(speech_recognition)
+    # result = test()
+    # keys = result[0]
+    # ranks = result[1]
+    # emit('suggestion', {'keys':keys,'ranks': ranks})
+    eventlet.spawn(speech_recognition)
      
 @app.route('/command', methods=["GET", "POST"])
 def on_pen():

@@ -81,6 +81,7 @@ class Search_Engine(object):
         for k in keywords:
             querySet = self.free_query(k)
             rank = self.rank_query(querySet)
-            ranks.append(rank)
             keys.append(k)
+            if rank:
+                ranks.append(rank)
         return (keys,ranks)

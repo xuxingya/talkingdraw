@@ -1,0 +1,279 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 22/06/2016 15:38
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-cable:before { content: "\f100"; }
+.flaticon-charger:before { content: "\f101"; }
+.flaticon-charger-1:before { content: "\f102"; }
+.flaticon-charger-2:before { content: "\f103"; }
+.flaticon-chip:before { content: "\f104"; }
+.flaticon-chip-1:before { content: "\f105"; }
+.flaticon-computer:before { content: "\f106"; }
+.flaticon-cooler:before { content: "\f107"; }
+.flaticon-copy-machine:before { content: "\f108"; }
+.flaticon-copy-machine-1:before { content: "\f109"; }
+.flaticon-dvi:before { content: "\f10a"; }
+.flaticon-earphones:before { content: "\f10b"; }
+.flaticon-ethernet:before { content: "\f10c"; }
+.flaticon-game-console:before { content: "\f10d"; }
+.flaticon-game-console-1:before { content: "\f10e"; }
+.flaticon-game-console-10:before { content: "\f10f"; }
+.flaticon-game-console-11:before { content: "\f110"; }
+.flaticon-game-console-12:before { content: "\f111"; }
+.flaticon-game-console-13:before { content: "\f112"; }
+.flaticon-game-console-14:before { content: "\f113"; }
+.flaticon-game-console-15:before { content: "\f114"; }
+.flaticon-game-console-16:before { content: "\f115"; }
+.flaticon-game-console-2:before { content: "\f116"; }
+.flaticon-game-console-3:before { content: "\f117"; }
+.flaticon-game-console-4:before { content: "\f118"; }
+.flaticon-game-console-5:before { content: "\f119"; }
+.flaticon-game-console-6:before { content: "\f11a"; }
+.flaticon-game-console-7:before { content: "\f11b"; }
+.flaticon-game-console-8:before { content: "\f11c"; }
+.flaticon-game-console-9:before { content: "\f11d"; }
+.flaticon-game-controller:before { content: "\f11e"; }
+.flaticon-game-controller-1:before { content: "\f11f"; }
+.flaticon-game-controller-2:before { content: "\f120"; }
+.flaticon-game-controller-3:before { content: "\f121"; }
+.flaticon-game-controller-4:before { content: "\f122"; }
+.flaticon-game-controller-5:before { content: "\f123"; }
+.flaticon-game-controller-6:before { content: "\f124"; }
+.flaticon-game-controller-7:before { content: "\f125"; }
+.flaticon-game-controller-8:before { content: "\f126"; }
+.flaticon-game-controller-9:before { content: "\f127"; }
+.flaticon-hdmi:before { content: "\f128"; }
+.flaticon-headphones:before { content: "\f129"; }
+.flaticon-ibook:before { content: "\f12a"; }
+.flaticon-imac:before { content: "\f12b"; }
+.flaticon-imac-1:before { content: "\f12c"; }
+.flaticon-imac-2:before { content: "\f12d"; }
+.flaticon-imac-3:before { content: "\f12e"; }
+.flaticon-imac-4:before { content: "\f12f"; }
+.flaticon-ipad:before { content: "\f130"; }
+.flaticon-ipad-1:before { content: "\f131"; }
+.flaticon-ipad-2:before { content: "\f132"; }
+.flaticon-ipad-3:before { content: "\f133"; }
+.flaticon-iphone:before { content: "\f134"; }
+.flaticon-iphone-1:before { content: "\f135"; }
+.flaticon-iphone-2:before { content: "\f136"; }
+.flaticon-iphone-3:before { content: "\f137"; }
+.flaticon-iphone-4:before { content: "\f138"; }
+.flaticon-iphones:before { content: "\f139"; }
+.flaticon-ipod:before { content: "\f13a"; }
+.flaticon-ipod-1:before { content: "\f13b"; }
+.flaticon-jack:before { content: "\f13c"; }
+.flaticon-joystick:before { content: "\f13d"; }
+.flaticon-joystick-1:before { content: "\f13e"; }
+.flaticon-joystick-2:before { content: "\f13f"; }
+.flaticon-lisa:before { content: "\f140"; }
+.flaticon-mac-mini:before { content: "\f141"; }
+.flaticon-macbook:before { content: "\f142"; }
+.flaticon-macbook-1:before { content: "\f143"; }
+.flaticon-macintosh:before { content: "\f144"; }
+.flaticon-magsafe:before { content: "\f145"; }
+.flaticon-microphone:before { content: "\f146"; }
+.flaticon-microphone-1:before { content: "\f147"; }
+.flaticon-monitor:before { content: "\f148"; }
+.flaticon-monitor-1:before { content: "\f149"; }
+.flaticon-monitor-2:before { content: "\f14a"; }
+.flaticon-motherboard:before { content: "\f14b"; }
+.flaticon-mouse:before { content: "\f14c"; }
+.flaticon-mouse-1:before { content: "\f14d"; }
+.flaticon-mouse-2:before { content: "\f14e"; }
+.flaticon-mouse-3:before { content: "\f14f"; }
+.flaticon-mouse-4:before { content: "\f150"; }
+.flaticon-photo-camera:before { content: "\f151"; }
+.flaticon-plug:before { content: "\f152"; }
+.flaticon-plug-1:before { content: "\f153"; }
+.flaticon-projector:before { content: "\f154"; }
+.flaticon-projector-1:before { content: "\f155"; }
+.flaticon-ram-memory:before { content: "\f156"; }
+.flaticon-router:before { content: "\f157"; }
+.flaticon-sata:before { content: "\f158"; }
+.flaticon-server:before { content: "\f159"; }
+.flaticon-server-1:before { content: "\f15a"; }
+.flaticon-servers:before { content: "\f15b"; }
+.flaticon-smart-tv:before { content: "\f15c"; }
+.flaticon-smartphone:before { content: "\f15d"; }
+.flaticon-smartphone-1:before { content: "\f15e"; }
+.flaticon-smartphone-2:before { content: "\f15f"; }
+.flaticon-smartphone-3:before { content: "\f160"; }
+.flaticon-smartphone-4:before { content: "\f161"; }
+.flaticon-smartwatch:before { content: "\f162"; }
+.flaticon-smartwatch-1:before { content: "\f163"; }
+.flaticon-smartwatch-2:before { content: "\f164"; }
+.flaticon-sound-cable:before { content: "\f165"; }
+.flaticon-sound-card:before { content: "\f166"; }
+.flaticon-speakers:before { content: "\f167"; }
+.flaticon-ssd:before { content: "\f168"; }
+.flaticon-tablet:before { content: "\f169"; }
+.flaticon-tablet-1:before { content: "\f16a"; }
+.flaticon-tablet-2:before { content: "\f16b"; }
+.flaticon-tablet-3:before { content: "\f16c"; }
+.flaticon-television:before { content: "\f16d"; }
+.flaticon-television-1:before { content: "\f16e"; }
+.flaticon-television-2:before { content: "\f16f"; }
+.flaticon-television-3:before { content: "\f170"; }
+.flaticon-television-4:before { content: "\f171"; }
+.flaticon-typewriter:before { content: "\f172"; }
+.flaticon-typewriter-1:before { content: "\f173"; }
+.flaticon-usb:before { content: "\f174"; }
+.flaticon-usb-1:before { content: "\f175"; }
+.flaticon-usb-2:before { content: "\f176"; }
+.flaticon-video-card:before { content: "\f177"; }
+    
+    $font-Flaticon-cable: "\f100";
+    $font-Flaticon-charger: "\f101";
+    $font-Flaticon-charger-1: "\f102";
+    $font-Flaticon-charger-2: "\f103";
+    $font-Flaticon-chip: "\f104";
+    $font-Flaticon-chip-1: "\f105";
+    $font-Flaticon-computer: "\f106";
+    $font-Flaticon-cooler: "\f107";
+    $font-Flaticon-copy-machine: "\f108";
+    $font-Flaticon-copy-machine-1: "\f109";
+    $font-Flaticon-dvi: "\f10a";
+    $font-Flaticon-earphones: "\f10b";
+    $font-Flaticon-ethernet: "\f10c";
+    $font-Flaticon-game-console: "\f10d";
+    $font-Flaticon-game-console-1: "\f10e";
+    $font-Flaticon-game-console-10: "\f10f";
+    $font-Flaticon-game-console-11: "\f110";
+    $font-Flaticon-game-console-12: "\f111";
+    $font-Flaticon-game-console-13: "\f112";
+    $font-Flaticon-game-console-14: "\f113";
+    $font-Flaticon-game-console-15: "\f114";
+    $font-Flaticon-game-console-16: "\f115";
+    $font-Flaticon-game-console-2: "\f116";
+    $font-Flaticon-game-console-3: "\f117";
+    $font-Flaticon-game-console-4: "\f118";
+    $font-Flaticon-game-console-5: "\f119";
+    $font-Flaticon-game-console-6: "\f11a";
+    $font-Flaticon-game-console-7: "\f11b";
+    $font-Flaticon-game-console-8: "\f11c";
+    $font-Flaticon-game-console-9: "\f11d";
+    $font-Flaticon-game-controller: "\f11e";
+    $font-Flaticon-game-controller-1: "\f11f";
+    $font-Flaticon-game-controller-2: "\f120";
+    $font-Flaticon-game-controller-3: "\f121";
+    $font-Flaticon-game-controller-4: "\f122";
+    $font-Flaticon-game-controller-5: "\f123";
+    $font-Flaticon-game-controller-6: "\f124";
+    $font-Flaticon-game-controller-7: "\f125";
+    $font-Flaticon-game-controller-8: "\f126";
+    $font-Flaticon-game-controller-9: "\f127";
+    $font-Flaticon-hdmi: "\f128";
+    $font-Flaticon-headphones: "\f129";
+    $font-Flaticon-ibook: "\f12a";
+    $font-Flaticon-imac: "\f12b";
+    $font-Flaticon-imac-1: "\f12c";
+    $font-Flaticon-imac-2: "\f12d";
+    $font-Flaticon-imac-3: "\f12e";
+    $font-Flaticon-imac-4: "\f12f";
+    $font-Flaticon-ipad: "\f130";
+    $font-Flaticon-ipad-1: "\f131";
+    $font-Flaticon-ipad-2: "\f132";
+    $font-Flaticon-ipad-3: "\f133";
+    $font-Flaticon-iphone: "\f134";
+    $font-Flaticon-iphone-1: "\f135";
+    $font-Flaticon-iphone-2: "\f136";
+    $font-Flaticon-iphone-3: "\f137";
+    $font-Flaticon-iphone-4: "\f138";
+    $font-Flaticon-iphones: "\f139";
+    $font-Flaticon-ipod: "\f13a";
+    $font-Flaticon-ipod-1: "\f13b";
+    $font-Flaticon-jack: "\f13c";
+    $font-Flaticon-joystick: "\f13d";
+    $font-Flaticon-joystick-1: "\f13e";
+    $font-Flaticon-joystick-2: "\f13f";
+    $font-Flaticon-lisa: "\f140";
+    $font-Flaticon-mac-mini: "\f141";
+    $font-Flaticon-macbook: "\f142";
+    $font-Flaticon-macbook-1: "\f143";
+    $font-Flaticon-macintosh: "\f144";
+    $font-Flaticon-magsafe: "\f145";
+    $font-Flaticon-microphone: "\f146";
+    $font-Flaticon-microphone-1: "\f147";
+    $font-Flaticon-monitor: "\f148";
+    $font-Flaticon-monitor-1: "\f149";
+    $font-Flaticon-monitor-2: "\f14a";
+    $font-Flaticon-motherboard: "\f14b";
+    $font-Flaticon-mouse: "\f14c";
+    $font-Flaticon-mouse-1: "\f14d";
+    $font-Flaticon-mouse-2: "\f14e";
+    $font-Flaticon-mouse-3: "\f14f";
+    $font-Flaticon-mouse-4: "\f150";
+    $font-Flaticon-photo-camera: "\f151";
+    $font-Flaticon-plug: "\f152";
+    $font-Flaticon-plug-1: "\f153";
+    $font-Flaticon-projector: "\f154";
+    $font-Flaticon-projector-1: "\f155";
+    $font-Flaticon-ram-memory: "\f156";
+    $font-Flaticon-router: "\f157";
+    $font-Flaticon-sata: "\f158";
+    $font-Flaticon-server: "\f159";
+    $font-Flaticon-server-1: "\f15a";
+    $font-Flaticon-servers: "\f15b";
+    $font-Flaticon-smart-tv: "\f15c";
+    $font-Flaticon-smartphone: "\f15d";
+    $font-Flaticon-smartphone-1: "\f15e";
+    $font-Flaticon-smartphone-2: "\f15f";
+    $font-Flaticon-smartphone-3: "\f160";
+    $font-Flaticon-smartphone-4: "\f161";
+    $font-Flaticon-smartwatch: "\f162";
+    $font-Flaticon-smartwatch-1: "\f163";
+    $font-Flaticon-smartwatch-2: "\f164";
+    $font-Flaticon-sound-cable: "\f165";
+    $font-Flaticon-sound-card: "\f166";
+    $font-Flaticon-speakers: "\f167";
+    $font-Flaticon-ssd: "\f168";
+    $font-Flaticon-tablet: "\f169";
+    $font-Flaticon-tablet-1: "\f16a";
+    $font-Flaticon-tablet-2: "\f16b";
+    $font-Flaticon-tablet-3: "\f16c";
+    $font-Flaticon-television: "\f16d";
+    $font-Flaticon-television-1: "\f16e";
+    $font-Flaticon-television-2: "\f16f";
+    $font-Flaticon-television-3: "\f170";
+    $font-Flaticon-television-4: "\f171";
+    $font-Flaticon-typewriter: "\f172";
+    $font-Flaticon-typewriter-1: "\f173";
+    $font-Flaticon-usb: "\f174";
+    $font-Flaticon-usb-1: "\f175";
+    $font-Flaticon-usb-2: "\f176";
+    $font-Flaticon-video-card: "\f177";
