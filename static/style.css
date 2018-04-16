@@ -189,8 +189,11 @@ body > div {
 	position: relative;
 	align-items: center;
 }
-.tool:active {
+.tool:hover {
 	background-color: rgba(242,242,242,0.2);
+}
+.tool:active {
+	background-color: yellowgreen;
 }
 
 .tool img {
@@ -211,6 +214,10 @@ body > div {
     border-radius: .4rem;
 }
 
+#pencil {
+	background-color: yellowgreen;
+}
+
 #speechContainer {
 	display: inline-block;
 	position: fixed;
@@ -220,6 +227,7 @@ body > div {
 	left:50%;
 	z-index: 99;
 }
+
 
 #start_speech {
 	width: 6rem;

@@ -41,7 +41,7 @@ class Search_Engine(object):
             keywords = [x[0] for x in self._word_timestamp[minIndex:maxIndex]]
             keywords_token = self.stopper(keywords)
             print(keywords_token, flush=True)
-            yield keywords_token
+            yield keywords_token #keywords_token can be 
     
     def one_word_query(self, word):
         print(word,flush=True)

@@ -55,7 +55,7 @@ class Search_Engine(object):
         querySet = []
 		for k in keywords:
             query = self.one_word_query(k, self.iconIndex)
-            if not query:
+            if query:
                 querySet.append(query)
         return querySet
 

@@ -14,8 +14,9 @@
 	<body>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script type="text/javascript" src="https://cdn.bootcss.com/socket.io/2.0.3/socket.io.slim.js"></script>
-		<script type="text/javascript" src="{{url_for('static', filename="kuromoji.js")}}"></script>
+		<!-- <script type="text/javascript" src="{{url_for('static', filename="kuromoji.js")}}"></script> -->
 		<script type="text/javascript" src="{{url_for('static', filename="talkingdraw.js")}}"></script>
+		<script type="text/javascript" src="{{url_for('static/node_modules/paper/dist', filename="paper-full.js")}}"></script>>
 		<div id="root" class="touch">
 			<div id="modal" class></div>
 			<div id="main-app-content" class>
@@ -37,28 +38,28 @@
 					<span id="final_span"></span>
 				</div>
 				<div id= "toolbar">					
-					<div class="tool delete">
+					<div class="tool" id="delete">
 						<img src="/static/images/icons/ic_delete_black_24px.svg">
 						<label>Delete</label>
 					</div>
-					<div class="tool undo">
+					<div class="tool" id="undo">
 						<img src="/static/images/icons/ic_undo_black_24px.svg">
 						<label>Undo</label>
 					</div>
-					<div class="tool redo">
+					<div class="tool" id="redo">
 						<img src="/static/images/icons/ic_redo_black_24px.svg">
 						<label>Redo</label>
 					</div>
-					<div class="tool clear" onclick = 'PEN.clear()'>
+					<div class="tool" id="clear" onclick = 'PEN.clear()'>
 						<img src="/static/images/icons/ic_clear_black_24px.svg"/>
 						<label>Clear</label>
 					</div>
-					<div class="tool pencile">
-						<img src="/static/images/icons/pencil.svg"/>
+					<div class="tool" id="pencil">
+						<img src="/static/images/icons/pencil.svg" onClick = 'PEN.pencil()'/>
 						<label>Pen</label>
 					</div>
-					<div class="tool talkingdraw">
-						<img src="/static/images/icons/talkingdraw.svg"/>
+					<div class="tool" id="talkingdraw">
+						<img src="/static/images/icons/talkingdraw.svg" onClick = 'PEN.talkingdraw()'/>
 						<label>Gesture</label>
 					</div>
 				</div>

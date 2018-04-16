@@ -1,12 +1,14 @@
     var starttime;
     var ontalk = false;
-    var istalkingdraw = false;
+    var gestures = [];
+    var svgcanvas = SVG('svgtree').size('100%', '100%')
     var talkingdraw_init=function(){
 
       var canvas = document.getElementById("canvas");
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      PEN = new Pen(canvas.getContext("2d"));
+      context = canvas.getContext("2d")
+      PEN = new Pen(context);
       canvas.addEventListener("pointerdown", ev_canvas, false);
       canvas.addEventListener("pointermove", ev_canvas, false);
       canvas.addEventListener("pointerup", ev_canvas, false);
@@ -45,17 +47,26 @@
         $(".thumbs").empty();
         console.log(ranks)
         // currently only support one gesture one time
-        rank = ranks[0];
-        for(i=0;i<rank.length;++i){
-          image_src = "../static/iconset/"+rank[i];
-          $(".thumbs").append("<div><img src="+image_src+"/>");
-        };
+        for (k=0;k<ranks.length;++k) {
+          for(i=0;i<rank.length;++i){
+            image_src = "../static/iconset/"+rank[i];
+            $(".thumbs").append("<div><img src="+image_src+"/>");
+          };
+          if(ranks[k]){
+            x = gesture[k][0];
+            y = gesture[k][1];
+            w = ggesture[k][2];
+            h = ggesture[k][3];
+            imagepath = "../static/iconset/"+ranks[k][0];
+            insert_image(x, y, w, h, imagepath)
+          }          
+        }       
       });
-
 };
 
     function Pen(new_context) {
       var tool = this;
+      var istalkingdraw = false;
       var context = new_context;
       this.started = false;
       var move_count = 0;
@@ -90,28 +101,35 @@
       this.pointermove = function(ev) {
         if (tool.started) {
           context.clearRect(0, 0, w, h);
-          context.drawImage(memCanvas, 0, 0);
+          context.drawImage(memCanvas, 0, 0); //copy image from memCanvas to context
           tool.points.push({
             x: ev._x,
             y: ev._y
         });
-          drawPoints(context, tool.points);
+          drawPoints(context, tool.points); //draw on context interface
         }
       };
 
       this.pointerup = function(ev) {
         if(tool.started) {
           tool.started = false;
-          memCtx.clearRect(0,0,w,h);
-          memCtx.drawImage(canvas, 0, 0);
-          tool.points = [];
-          if(ontalk){
+          if (istalkingdraw) {  //select talkingdraw
+            if(ontalk){   //is speaking
             b = (new Date() - starttime)*0.001;
             tool.time.push(b);          
             $.post("/command", {"starttime": tool.time[0], "endtime": tool.time[1]}, function(data) {
-            console.log(data);
-            });          
-          }
+            console.log(data);});
+            context.clearRect(0,0,w,h);
+            context.drawImage(memCanvas, 0, 0); //discard drawing on canvas, and copy the previous image to canvas
+            pointcount = tool.points.length;
+            gestures.append([ev._x, ev._y, 100,100]);
+            tool.points = [];       
+            }
+          } else{   //select not takingdraw
+            memCtx.clearRect(0,0,w,h);   
+            memCtx.drawImage(canvas, 0, 0);  //copy image from canvas to memctx
+            tool.points = [];
+          }                
         }
       };
 
@@ -119,6 +137,20 @@
       this.clear = function() {
         context.clearRect(0,0,w,h);
         memCtx.clearRect(0,0,w,h);
+      };
+
+      this.pencil = function() {
+        istalkingdraw = false;
+        $("#pencil").css("background-color", "yellowgreen");
+        $("#talkingdraw").css("background-color", "rgba(242,242,242,0.98)");
+        console.log("pencil");
+      };
+
+      this.talkingdraw = function(){
+        istalkingdraw = true;
+        $("#pencil").css("background-color", "rgba(242,242,242,0.98)");
+        $("#talkingdraw").css("background-color", "yellowgreen");
+        console.log("talkingdraw");
       };
     }
 
@@ -162,13 +194,8 @@
       ctx.stroke();
     }
 
-    function insert_image(){
-      var img = new Image();
-      img.onload = function(){
-        ctx.drawImage(img,0,0,100,100);
-      }
-      console.log("insert_image");
-      img.src = "../static/images/painting.svg";
+    function insert_image(x, y, w, h, imagepath){
+      svgcanvas.svg();
     }
 
 $(talkingdraw_init);
