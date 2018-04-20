@@ -102,11 +102,13 @@ def listen_loop(responses):
                 word_timestamp.append([word, start_time, end_time])
             # logging.info('word_timestamp: %s',word_timestamp)
             print(word_timestamp, flush = True)
-            currentgestures = gestures[gestureindex:]
-            gestureindex = len(currentgestures)
+            # currentgestures = gestures[gestureindex:]
+            # gestureindex = len(currentgestures)
             # logging.info('gesture_timestamp: %s', currentgestures)
-            ksearch = Search_Engine(word_timestamp, currentgestures, language,iconIndex)
+            global gestures
+            ksearch = Search_Engine(word_timestamp, gestures, language,iconIndex)
             k_results = ksearch.get_icons()
+            gestures = [];
             keys = k_results[0]
             ranks = k_results[1]
             socketio.emit('suggestion', {'keys':keys,'ranks': ranks})

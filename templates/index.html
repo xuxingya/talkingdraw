@@ -14,9 +14,13 @@
 	<body>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script type="text/javascript" src="https://cdn.bootcss.com/socket.io/2.0.3/socket.io.slim.js"></script>
+		<script type="text/javascript" src="/static/paper-full.min.js"></script>
+		<script type="text/javascript" src="/static/Utils.js"></script>
+		<script type="text/javascript" src="/static/Polyline.js"></script>
+		<script type="text/javascript" src="/static/DollarOne.js"></script>
+		<script type="text/javascript" src="/static/DefaultOne.js"></script>
 		<!-- <script type="text/javascript" src="{{url_for('static', filename="kuromoji.js")}}"></script> -->
-		<script type="text/javascript" src="{{url_for('static', filename="talkingdraw.js")}}"></script>
-		<script type="text/javascript" src="{{url_for('static/node_modules/paper/dist', filename="paper-full.js")}}"></script>>
+		<script type="text/javascript" src="/static/talkingdraw.js"></script>
 		<div id="root" class="touch">
 			<div id="modal" class></div>
 			<div id="main-app-content" class>
@@ -37,11 +41,11 @@
 					<span id="interim_span"></span>
 					<span id="final_span"></span>
 				</div>
-				<div id= "toolbar">					
-					<div class="tool" id="delete">
-						<img src="/static/images/icons/ic_delete_black_24px.svg">
-						<label>Delete</label>
-					</div>
+				<div id= "toolbar">	
+					<div class="tool" id="clear">
+						<img src="/static/images/icons/ic_clear_black_24px.svg"/>
+						<label>Clear</label>
+					</div>				
 					<div class="tool" id="undo">
 						<img src="/static/images/icons/ic_undo_black_24px.svg">
 						<label>Undo</label>
@@ -50,27 +54,39 @@
 						<img src="/static/images/icons/ic_redo_black_24px.svg">
 						<label>Redo</label>
 					</div>
-					<div class="tool" id="clear" onclick = 'PEN.clear()'>
-						<img src="/static/images/icons/ic_clear_black_24px.svg"/>
-						<label>Clear</label>
+					<div class="tool" id="eraser">
+						<img src="/static/images/icons/eraser.svg">
+						<label>Eraser</label>
 					</div>
 					<div class="tool" id="pencil">
-						<img src="/static/images/icons/pencil.svg" onClick = 'PEN.pencil()'/>
-						<label>Pen</label>
+						<img src="/static/images/icons/pencil.svg"/>
+						<label>Pencil</label>
 					</div>
 					<div class="tool" id="talkingdraw">
-						<img src="/static/images/icons/talkingdraw.svg" onClick = 'PEN.talkingdraw()'/>
-						<label>Gesture</label>
+						<img src="/static/images/icons/talkingdraw.svg"/>
+						<label>TalkingDraw</label>
 					</div>
 				</div>
+				<div id="testbar">
+					<select id="classselect">
+						<option value=0>icon</option>
+						<option value=100>link</option>
+					</select>
+					<button class = "test_button" id="addgesture">Add</button>
+					<button class = "test_button" id="saverecord">Save</button>
+					<button class = "test_button" id="showgesture">Show</button>
+					<button class = "test_button" id="reloadrecord">Reload</button>
+					<button class = "test_button" id="removerecord">Clear</button>
+				</div>
 				<div id="speechContainer">
-					<div id="start_speech" class="tool start_speech">
+					<div id="start_speech" class = "tool">
 						<img src="/static/images/icons/ic_mic_none_black_24px.svg"/>
 						<label>Talk</label>
 					</div>
 				</div>
 				<div id="main-canvas-container">
-					<canvas id="canvas"></canvas>
+					<!-- <canvas id="canvas"></canvas> -->
+					<canvas id="mycanvas"></canvas>
 				</div>				
 			</div>
 		</div>

@@ -2,9 +2,6 @@
     var ontalk = false;
     var gestures = [];
     var points = [];
-    var Records = {};
-    var iconid = 0;
-    var lineid = 0;
     var DR = new RD.DollarOne();
     var talkingdraw_init=function(){
       var mycanvas = document.getElementById("mycanvas");
@@ -14,8 +11,7 @@
       paper.setup(mycanvas);
       pen = pen();
       tdpen = tdpen();
-      tdpen.activate();
-      loadGesture();       // load gesture Records
+      pen.activate();
 
       $('#pencil').click(function(){
         $("#pencil").css("background-color", "yellowgreen");
@@ -36,64 +32,12 @@
         paper.project.clear();
       });
 
-      $('#addgesture').click(function(){ //temprary add gestures
+      $('#addgesture').click(function addgesture(){
         var name = $('#classselect').val();
         if(points.length){
-          if(name==0){
-            name = name + iconid;
-            DR.addGesture(name,points);
-            iconid++;
-          }else {
-            name = name + lineid;
-            DR.addGesture(name,points);
-            lineid++;
-          }       
-          console.log("add gesture success");
+          DR.addGesture(name,points);
+          console.log("add gesture success",name);
         }
-      });
-
-      $('#reloadrecord').click(function(){
-        // Records = {};
-        // window.localStorage.setItem("Records", "{}");
-        iconid = 0;
-        lineid = 0;
-        loadGesture();
-      });
-
-      $('#saverecord').click(function(){
-        if(!points.length){
-          return;
-        }
-        var name = $('#classselect').val();
-        if(name==0){
-          for (var i = 0; i < 100; i++) {
-            if(!Records[i]){
-              Records[i] = points;
-              break;
-            }
-          }
-        }else {
-          for (var j = 100; j < 200;j++)
-          if(!Records[j]){
-            Records[j] = points;
-            break;
-          }
-        }
-        var str = JSON.stringify(Records);
-        window.localStorage.setItem("Records", str);
-        DR.addGesture(name, points);
-      });
-
-      $('#showgesture').click(function(){
-        console.log("pool",DR.gesturePool);
-        console.log("Records", Records);
-      });
-
-      $('#removerecord').click(function(){
-        Records = {};
-        window.localStorage.setItem("Records", "{}");
-        iconid = 0;
-        lineid = 0;
       });
 
       var socket = io.connect("http://" + document.domain + ":" + window.location.port);
@@ -164,11 +108,8 @@
           size = new Size(50, 50);
           paper.project.importSVG(url, onLoad = function(item){
             var gesture = gestures.shift();
-            tgsize = (gesture.bounds.width + gesture.bounds.height);
-            ogsize = (item.bounds.width + item.bounds.height);
-            scalefactor = tgsize/ogsize;
             item.position = gesture.position;
-            item.scale(scalefactor);
+            item.scale(0.2);
             gesture.remove();
           });                
         }  
@@ -228,42 +169,26 @@
         path.smooth();
       }
 
-      tool.onMouseUp = function(event){
+      tool.onMouseUp = function(event){;
         path.add(event.point);
-        path.smooth();
         if(path.length>0){
-          var result = DR.recognize(points);
-          console.log("DR", result);
-          if(!result){
-            return;
-          }
-          path.strokeColor = 'yellowgreen';
-          if(result<100){ //icon gesture
-            gestures.push(path);
-            b = (new Date() - starttime)*0.001;
-            time.push(b);      
-            $.post("/command", {"starttime": time[0], "endtime": time[1]});
-          }else {  //link gesture
-
-          }
+          gestures.push(path);
         }
-
+        path.smooth();
+        path.strokeColor = 'yellowgreen';
+        b = (new Date() - starttime)*0.001;
+        time.push(b);
+        // console.log("gesture time",time);        
+        $.post("/command", {"starttime": time[0], "endtime": time[1]});
+        var result = DR.recognize(points);
+        console.log("DR", result);
+        // console.log("recognize",DollarRecognizer.Recognize(dPoint, true));
       }
 
       return tool;
     }
 
-    function loadGesture(){
-      var r = window.localStorage.getItem("Records");
-      if(r){
-        Records = JSON.parse(r);
-      }
-      DR.removeGesture();
-      for (var name in Records){
-        DR.addGesture(name, Records[name]);
-      }
-      console.log("load gesture success");
-    }
+
 
 // $(talkingdraw_init);
 $(document).ready(talkingdraw_init);

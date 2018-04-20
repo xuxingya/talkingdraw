@@ -59,8 +59,7 @@ class Search_Engine(object):
         querySet = []
         for k in keywords:
             query = self.one_word_query(k)
-            if query:
-                querySet.append(query)
+            querySet.append(query)
         return querySet
 
     def rank_query(self, querySet):
@@ -70,10 +69,11 @@ class Search_Engine(object):
         counts = Counter(flatlist)
         countlist = sorted(flatlist, key=counts.get, reverse=True)
         full_rank = list(set(countlist))
-        # Only take 10 prior results
+        # Only take 5 prior results
         prior_rank = full_rank[:5]
         print("rank list: {}".format(prior_rank), flush = True)
         return prior_rank
+    
     def get_icons(self):
         ranks = []
         keys = []
@@ -81,7 +81,9 @@ class Search_Engine(object):
         for k in keywords:
             querySet = self.free_query(k)
             rank = self.rank_query(querySet)
-            keys.append(k)
-            if rank:
-                ranks.append(rank)
+            if k:
+                keys.append(k)
+            else:
+                keys.append("?")
+            ranks.append(rank)
         return (keys,ranks)
