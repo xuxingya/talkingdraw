@@ -61,14 +61,14 @@ def speech_recognition():
         requests = (types.StreamingRecognizeRequest(audio_content=content)
                     for content in audio_generator)
         responses = client.streaming_recognize(streaming_config, requests)
-        listen_loop(responses)
-        # try:
-        #     listen_loop(responses)
-        # except Exception as exception:
-        #     assert type(exception).__name__
+        # listen_loop(responses)
+        try:
+            listen_loop(responses)
+        except Exception as exception:
+            # assert type(exception).__name__
             # print("Unexpected error:", sys.exc_info()[0], flush = True)
             # logging.error('speech limit time exceed')
-            # socketio.emit('speech_state', {'data': 'speech recognition error'})     
+            socketio.emit('speech_state', {'data': 'speech recognition stop'})     
 
 def listen_loop(responses):
     hasrun = False 

@@ -91,8 +91,8 @@ body > div {
 #talkingdraw-suggestions .suggestions p {
 	font-size: 1.4rem;
     padding: 0 1rem;*/
-    margin-right: 0.4rem;
-    min-width: 11rem;
+    margin-right: 0.2rem;
+/*    min-width: 10rem;*/
 }
 .thumbs {
     height: 100%;

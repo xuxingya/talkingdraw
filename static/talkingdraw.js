@@ -33,6 +33,7 @@
 
       $('#clear').click(function clear(){
         console.log("clear");
+        gestures = [];
         paper.project.clear();
       });
 
@@ -162,15 +163,18 @@
 
           url = "../static/iconset/"+rank[0];
           size = new Size(50, 50);
-          paper.project.importSVG(url, onLoad = function(item){
-            var gesture = gestures.shift();
-            tgsize = (gesture.bounds.width + gesture.bounds.height);
-            ogsize = (item.bounds.width + item.bounds.height);
-            scalefactor = tgsize/ogsize;
-            item.position = gesture.position;
-            item.scale(scalefactor);
-            gesture.remove();
-          });                
+          var  loadoptions = {
+            onLoad: function(item){
+              var gesture = gestures.shift();
+              tgsize = (gesture.bounds.width + gesture.bounds.height);
+              ogsize = (item.bounds.width + item.bounds.height);
+              scalefactor = tgsize/ogsize;
+              item.position = gesture.position;
+              item.scale(scalefactor);
+              gesture.remove();
+            },
+          };
+          paper.project.importSVG(url, loadoptions);             
         }  
       });
 };
@@ -204,11 +208,22 @@
 
     }
 
+    var options = {
+      match: function(item){
+        item["item"].parent.isChild(paper.project.activeLayer);
+      },
+    };
+
     function tdpen(){
       var tool = new Tool();
       var path;
       var time = [];
       tool.onMouseDown =  function(event) {
+        //test if it hit an icon
+        var k = paper.project.activeLayer.hitTest(event.point, options);
+        if(k){
+          console.log(k,k["item"].parent);
+        }
         // Create a new path and give it a stroke color:
         path = new Path();
         path.strokeColor = '#00000';
@@ -217,7 +232,6 @@
         a = (new Date() - starttime)*0.001;
         time = [];
         time.push(a);
-      
       }
 
       tool.onMouseDrag =  function(event) {
