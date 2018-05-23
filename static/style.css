@@ -89,9 +89,9 @@ body > div {
 }
 
 #talkingdraw-suggestions .suggestions p {
-	font-size: 1.4rem;
+	/*font-size: 1.4rem;
     padding: 0 1rem;*/
-    margin-right: 0.2rem;
+    margin-right: 0.2rem;*/
 /*    min-width: 10rem;*/
 }
 .thumbs {
@@ -100,7 +100,7 @@ body > div {
     display: -moz-box;
     display: -webkit-flex;
     display: -ms-flexbox;
-    display:box;
+/*    display:box;*/
     display: flex;
     -webkit-box-align: center;
     -moz-box-align: center;
@@ -110,7 +110,12 @@ body > div {
     align-items: center;
     overflow-x: hidden;
     overflow-y: hidden;
-    margin-bottom: 4px;
+}
+
+.thumbs p{
+	font-size: 1.4rem;
+    padding: 0 1rem;*/
+    margin-bottom: 0.5rem;
 }
 
 #talkingdraw-suggestions .thumbs::-webkit-scrollbar {
@@ -134,13 +139,12 @@ body > div {
     position: relative;
     height: 70%;
     margin-right: 1rem;
-    margin-top: 12px;
     border: 1px solid transparent;
     padding: .2rem;
     min-width: 3.8rem;
     max-width: 3.8rem;
     height: 3.8rem;
-    text-align: center;
+    align-items: center;
 }
 
 #autodraw-suggestions .thumbs div.active {

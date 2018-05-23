@@ -70,7 +70,7 @@ class Search_Engine(object):
         countlist = sorted(flatlist, key=counts.get, reverse=True)
         full_rank = list(set(countlist))
         # Only take 5 prior results
-        prior_rank = full_rank[:5]
+        prior_rank = full_rank[:10]
         print("rank list: {}".format(prior_rank), flush = True)
         return prior_rank
     
